@@ -77,7 +77,11 @@ extension DateFormatter {
 		// Sunday will be first. Make it last
 		let sunday = "Sunday"
 		if daysOfWeekArray.contains(sunday) {
+#if os(iOS)
 			daysOfWeekArray.remove(at: daysOfWeekArray.index(of: sunday)!)
+#elseif os(macOS)
+            daysOfWeekArray.remove(at: daysOfWeekArray.firstIndex(of: sunday)!)
+#endif
 			daysOfWeekArray.append(sunday)
 		}
 
